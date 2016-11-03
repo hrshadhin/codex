@@ -8,7 +8,7 @@ Codex [A raw PHP boilerplate application]
   MVC framework terminology, How those framework works(CodeIgnitor,
   Laravel etc).
 
---Structure
+#Structure
 <img src="public/images/codex.png">
 
 #Installation
