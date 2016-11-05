@@ -4,22 +4,20 @@
 * Get and Start application with
 * Required fiels.
 */
-//app Golobal Variable
-$app = [];
-
-//get config for app
-$app['config'] = require 'config.php';
-
-//get request,router,connection,querybuilder files
-require 'core/Request.php';
-require 'core/Router.php';
-require 'core/database/Connection.php';
-require 'core/database/QueryBuilder.php';
+//strong config into app fatory
+App::bind('config', require 'config.php');
 
 /*call querybuilder with pdo instance
 and get querybuilder instance and strore in
-golobal app database container.
+app container.
 */
-$app['database'] = new QueryBuilder(
-  Connection::make($app['config']['database'])
-);
+App::bind('database', new QueryBuilder(
+  Connection::make(App::get('config')['database'])
+));
+
+//Helper function to load the view
+function view($name, $data)
+{
+  extract($data);
+  return require "views/{$name}.php";
+}

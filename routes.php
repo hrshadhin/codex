@@ -5,8 +5,8 @@
 * register various routes
 */
 
-$router->get('', 'controllers/home.php');
-$router->get('about', 'controllers/about.php');
-$router->get('contact', 'controllers/contact.php');
-$router->get('task', 'controllers/task.php');
-$router->post('taskadd','controllers/taskadd.php');
+$router->get('', 'PagesController@home');
+$router->get('about', 'PagesController@about');
+$router->get('contact', 'PagesController@contact');
+$router->get('task', 'TaskController@index');
+$router->post('taskadd','TaskController@store');
