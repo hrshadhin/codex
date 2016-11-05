@@ -7,12 +7,16 @@
 
 class Router
 {
-  protected $routes = [];
+  protected $routes = [
+    'GET' => [],
+    'POST' => []
+  ];
 
-  //register or define routes
-  public function register($routes)
-  {
-    $this->routes = $routes;
+  public function get($uri, $controller){
+    $this->routes['GET'][$uri] = $controller;
+  }
+  public function post($uri, $controller){
+    $this->routes['POST'][$uri] = $controller;
   }
 
 
@@ -33,13 +37,13 @@ class Router
   * @param $uri string
   * @return string
   */
-  public function direct($uri)
+  public function direct($uri, $requestType)
   {
     //check if uri exits or not
-    if (array_key_exists($uri, $this->routes)){
-      return $this->routes[$uri];
+    if (array_key_exists($uri, $this->routes[$requestType])){
+      return $this->routes[$requestType][$uri];
     }
-    //not found view 
+    //not found view
     return "views/404.php";
 
   }

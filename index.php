@@ -8,4 +8,4 @@ require 'core/bootstrap.php';
 
 //load routes and redirect to request uri
 require Router::load('routes.php')
-  ->direct(Request::uri());
+  ->direct(Request::uri(),Request::method());
